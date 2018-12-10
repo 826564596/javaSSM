@@ -1,0 +1,24 @@
+<!--pages/index/agency/agency.wxml-->
+<view class="agencyInfo-detail-container">
+  <image src="/images/edu/edu-02.jpg" class='head-img'></image>
+  <!-- <image bindtap='playerMusicTap' class='playermusic' src="/images/play-music.png"></image> -->
+  <text class='title'>{{agencyInfo.aInfo}}</text>
+  <view class='container'>
+    <text class='addressText'>地 址：{{agencyInfo.address}}</text>
+    <text class='phoneNumText'>联系方式：{{agencyInfo.phoneNum}}</text>
+  </view>
+</view>
+
+<view class='footer tiyan white_bg flex gridXt'>
+  <view class='sub flex tc'>
+    <!-- <button class='subBtn sub ' catchtap='toShare'> -->
+    <button class='subBtn sub' open-type="share">
+      <view class='iconfont icon-fenxiang'></view>
+      <view class='f12 sc '>分享</view>
+    </button>
+    <button class='subBtn sub' bindtap="toCall">
+      <view class='iconfont icon-dianhuazixun'></view>
+      <view class='f12 sc'>电话咨询</view>
+    </button>
+  </view>
+</view>

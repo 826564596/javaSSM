@@ -1,0 +1,40 @@
+/************cyan color #9bd3d3 **************/
+
+/*主要颜色  */
+
+.mainColor {
+  color: #9bd3d3;
+}
+
+.mainColor_bg {
+  background-color: #9bd3d3;
+}
+
+/*辅助色  */
+
+.subColor {
+  color: #ff5050;
+}
+
+/*标题  */
+
+.title::after {
+  background-color: #9bd3d3;
+}
+
+/*体验课详情  底部购买按钮  */
+
+.jingpin .purBtn {
+  background-color: #f38d4f;
+}
+
+/*课表页 日期被选中  */
+
+.selected {
+  background: linear-gradient(90deg, #2ccdcd, #9bd3d3);
+}
+
+/*题头  */
+.besTit::after{
+   background-color: #9bd3d3;
+}

@@ -1,0 +1,63 @@
+@import "../course-detail/course-detail.wxss";
+
+.agencyInfo-detail-container{
+  /*设置为伸缩盒子模型，默认方向为水平布局，需要设置为垂直布局  */
+  display: flex;  
+  flex-direction: column;
+  font-family: '宋体';
+}
+
+.head-img{
+  position: relative; 
+  width: auto; 
+  height: 355rpx; 
+  margin: 20rpx 20rpx 20rpx 20rpx; 
+  border-radius: 10rpx 10rpx 10rpx 10rpx;
+  overflow: hidden; 
+}
+
+.container{
+  margin-top: 20rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  padding: 15rpx;
+  border-radius: 10rpx; 
+  background: linear-gradient(90deg,#e64f5a,#ff945b);  
+}
+
+.title{
+  font-size: 30rpx;
+  font-weight: 600; 
+  margin-top: 30rpx;
+  margin-left: 30rpx; 
+  letter-spacing: 2px;
+  color: #4b556c;
+}
+
+.addressText{
+  display: block;
+  float: left;
+  font-size: 36rpx; 
+   margin-left: 20rpx; 
+  letter-spacing: 2px;
+  color: #fff;
+  /* margin-right: 25rpx;  */
+}
+
+.phoneNumText{
+  /* display: inline-block; */
+  float: left;
+  font-size: 36rpx; 
+   margin-top: 20rpx;  
+   margin-left: 30rpx; 
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+.playermusic{
+  /* display: inline-block; */
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  margin-left: 20rpx;
+}

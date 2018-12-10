@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fjut.dao.CourseDao">
+    
+    <resultMap id="course" type="com.fjut.model.Course">
+        <id column="c_id" property="courseNo" />
+        <result column="c_name" property="courseName" />
+        <result column="c_blurb" property="blurb" />
+        <result column="c_video" property="videoUrl" />
+        <result column="c_img" property="imgUrl" />
+        <result column="c_class" property="courseClass" />
+        <result column="c_beginDate" jdbcType="DATE" property="beginDate" javaType="java.sql.Date"/>
+        <result column="c_bookingNum" property="bookingNum" />
+        <result column="c_hours" property="hours" />
+        <result column="c_exist" property="isExist" />
+        <result column="c_teachTime" property="teachTime" />
+        <result column="c_price" property="price" />
+        <result column="c_limitBookingNum" property="limitBookingNum" />
+        <association property="teacher" column="c_tId" javaType="com.fjut.model.Teacher">
+            <id column="t_id" property="id" />
+            <result column="t_name" property="name" />
+            <result column="t_age" property="age" />
+            <result column="t_avatar" property="avatarImg" />
+            <result column="t_blurb" property="blurb" />
+            <result column="t_worktime" property="workTime" />
+            <result column="t_exist" property="isExist" />
+        </association>
+    </resultMap>
+
+    <!--查询全部课程信息-->
+    <select id="getAllCourse" resultMap="course">
+        SELECT * FROM t_course c, t_trainstaff t WHERE c.c_tId = t.t_id AND c.c_exist=1
+    </select>
+
+    <!--查询一门课程的信息-->
+    <select id="getCourseById" resultMap="course">
+        SELECT * FROM t_course c, t_trainstaff t WHERE c_id=#{courseId} AND c.c_tId = t.t_id
+    </select>
+
+    <!--更新一门课程信息-->
+    <update id="updateCourse">
+        UPDATE t_course SET c_name=#{course.courseName}, c_blurb=#{course.blurb}, c_video=#{course.videoUrl},
+                            c_img=#{course.imgUrl}, c_class=#{course.courseClass}, c_hours=#{course.hours},
+                            c_teachTime=#{course.teachTime}, c_price=#{course.price}, c_limitBookingNum=#{course.limitBookingNum}
+                            WHERE c_id=#{course.courseNo}
+    </update>
+
+    <!--添加一门课程-->
+    <insert id="addCourse">
+        INSERT INTO t_course (c_id,c_name,c_blurb,c_video,c_img,c_class,c_beginDate,c_hours,c_tId,c_teachTime,c_price,c_limitBookingNum,c_exist)
+        VALUES (#{course.courseNo},#{course.courseName},#{course.blurb},#{course.videoUrl},
+                #{course.imgUrl},#{course.courseClass},#{course.beginDate},#{course.hours},
+                #{course.teacher.id},#{course.teachTime},#{course.price},#{course.limitBookingNum},1)
+    </insert>
+
+    <!--删除一门课程(标志位置0)-->
+    <update id="deleteCourse">
+        UPDATE t_course SET c_exist = 0 WHERE c_id=#{course.courseNo}
+    </update>
+
+    <!-- (约课)某课程的预约人数+1 -->
+    <update id="addBookingNum">
+        UPDATE t_course SET c_bookingNum = c_bookingNum +1 WHERE c_id=#{courseNo}
+    </update>
+
+</mapper>

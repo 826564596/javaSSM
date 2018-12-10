@@ -1,0 +1,80 @@
+<!--pages/user/user.wxml-->
+<view class="user_content">
+  <view class="user-elembg">
+      <image class="user-elem" src="http://ixiaochengxu.cc/resource/images/user/element-bg.png" mode='aspectFit'></image>
+      <image class="user-elem" src="http://ixiaochengxu.cc/resource/images/user/element-bg.png" mode='aspectFit'></image>
+  </view>
+  <view class="Member_head" catchtap="onNavigateTap" data-url="../user_edit/index">
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+      <!-- <view class="userinfo_name-box">  userinfo_name lineText -->
+      <view class="userinfo_name-box">{{userInfo.nickName}}</view>
+      <!-- </view> -->
+  </view>
+</view>
+<view class="my-menu">
+  <view class="my-menu-box">
+      <view class="my-menu-item {{isshowmenu == true ? 'arrowR arrowRv' :'arrowR'}}" bindtap="onToggleTap"> 
+          <text class="iconfont {{icon?icon:'icon-circle'}} mr10"></text> 
+          <text>个人记录</text>
+      </view>
+      <view class="forum-box" wx:if="{{isshowmenu}}">
+          <view class="my-menu-subitem gridXt">
+              <text class="{{ isshowbooking == true ? 'arrowL arrowLv' : 'arrowL' }}" bindtap='onBookingToggle'>约课记录</text>
+          </view>
+          <!-- <view class="my-menu-subitem-1 gridXt" wx:if="{{isshowbooking && bookings==true}}"> -->
+          <view class="my-menu-subitem-1 gridXt" wx:if="{{isshowbooking}}">
+            <view class='bk_cname_1'>课程名称</view>
+            <view class='bk_bookingdate_1'>预约日期</view>
+          </view>
+          <view class="my-menu-subitem-1 gridXt" wx:if="{{isshowbooking}}" wx:for="{{bookings}}" wx:key="key">
+            <view class='bk_cname'>{{item.course.courseName}}</view>
+            <view class='bk_bookingdate'>{{item.bookingDate}}</view>
+          </view>
+
+          <view class="my-menu-subitem gridXt">
+              <text class="{{ isshowmycourse == true ? 'arrowL arrowLv' : 'arrowL' }}" bindtap='onMyCourseToggle'>我的课程</text>
+          </view>
+           <view class="my-menu-subitem gridXt">
+              <text class="{{ 'arrowL' }}" data-openid='{{userInfo.nickName}}' bindtap="ToMyQuestion">我的问题</text>
+          </view>
+          <!-- 精品课列表 -->
+          <view wx:if="{{isshowmycourse==true}}" wx:for="{{myCourseList}}" wx:key="key">
+
+            <!-- 已下架课程 -->
+            <view wx:if="{{item.isExist==0}}" class="my-menu-subitem-1 gridXt noExist-bg">
+              <view class='coreClsItem flex mb10'>
+                <image class='coreClaPic mr10' mode="aspectFill" src='{{item.imgUrl}}'></image>
+                <view class='sub flex flexC flexMBtw'>
+                  <view class='ccTit lineText2 bold'>{{item.courseName}}</view>
+                  <view class='grey f12 flex flexW'>
+                    <view class='classLabel mr15' wx:for="{{['入门经典','精品课','面向对象']}}" wx:key="key">{{item}}</view>
+                  </view>
+                  <view class='flex flexMBtw flexCCen'>
+                    <view class='keshi'>{{item.hours}}课时</view>
+                    <view class='noExistText'>已下架</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <!-- 未下架课程  -->
+            <view wx:else class="my-menu-subitem-1 gridXt">
+              <view class='coreClsItem flex white_bg mb10' bindtap="toShowDetail" data-ctype='{{item.courseClass}}' data-cid='{{item.courseNo}}'>
+                <image class='coreClaPic mr10' mode="aspectFill" src='{{item.imgUrl}}'></image>
+                <view class='sub flex flexC flexMBtw'>
+                  <view class='ccTit lineText2 bold'>{{item.courseName}}</view>
+                  <view class='grey f12 flex flexW'>
+                    <view class='classLabel mr15' wx:for="{{['入门经典','精品课','面向对象']}}" wx:key="key">{{item}}</view>
+                  </view>
+                  <view class='flex flexMBtw flexCCen'>
+                    <view class='keshi'>{{item.hours}}课时</view>
+                    <view class='besBtn mainColor_bg'>详情</view>
+                    <view class='besBtn mainColor_bg'bindtap="tapName" data-ctype='{{item.courseClass}}' data-cid='{{item.courseNo}}'
+                    data-openid='{{userInfo.nickName}}'>提问</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+      </view>
+  </view>
+</view>

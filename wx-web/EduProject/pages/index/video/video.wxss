@@ -1,0 +1,57 @@
+/* pages/index/video/video.wxss */
+@import "../index.wxss";
+/* @import "../../schedule/schedule.wxss"; */
+
+.arrowL{
+  position: relative;
+}
+
+.arrowL::before{ 
+  content: ""; 
+  position:absolute; 
+  display: inline-block; 
+  width: 7px; 
+  height: 7px; 
+  border:2px solid; 
+  border-color:transparent transparent #999 #999; 
+  top: 50%; 
+  -webkit-transform:translateY(-50%) scale(0.7) rotate(45deg);    
+  transform:translateY(-50%) scale(0.7) rotate(45deg); 
+  -webkit-transition: all 0.3s ease; 
+  transition: all 0.3s ease; 
+  border-radius: 2px;
+  left: 85rpx;
+}
+
+.arrowR{
+  position: relative;
+}
+
+.arrowR::before{ 
+  content: ""; 
+  position:absolute; 
+  display: inline-block; 
+  width: 7px; 
+  height: 7px; 
+  border:2px solid; 
+  border-color:#999 #999 transparent transparent; 
+  top: 50%; 
+  -webkit-transform:translateY(-50%) scale(0.7) rotate(45deg);    
+  transform:translateY(-50%) scale(0.7) rotate(45deg); 
+  -webkit-transition: all 0.3s ease; 
+  transition: all 0.3s ease; 
+  border-radius: 2px;
+  right: 85rpx;
+}
+
+.white_bg{
+  background-color: skyblue;
+}
+
+.vedioTit{
+  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+  text-decoration: underline;
+  font-size: 36rpx;
+  color: blue;
+  text-align: center;
+}

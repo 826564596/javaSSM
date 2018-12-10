@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fjut.dao.TeacherDao">
+    
+    <resultMap id="teacher" type="com.fjut.model.Teacher">
+        <id column="t_id" property="id" />
+        <result column="t_name" property="name" />
+        <result column="t_age" property="age" />
+        <result column="t_avatar" property="avatarImg" />
+        <result column="t_blurb" property="blurb" />
+        <result column="t_worktime" property="workTime" />
+        <result column="t_exist" property="isExist" />
+    </resultMap>
+    
+    <select id="getTeacherById" resultMap="teacher">
+        SELECT * FROM t_trainstaff WHERE t_id=#{id}
+    </select>
+
+    <select id="getAllTeacher" resultMap="teacher">
+        SELECT * FROM t_trainstaff WHERE t_exist=1
+    </select>
+
+    <insert id="addTeacher">
+        INSERT INTO t_trainstaff VALUES (#{teacher.id},#{teacher.name},#{teacher.age},#{teacher.avatarImg},#{teacher.blurb},#{teacher.workTime},1)
+    </insert>
+
+    <update id="updateTeacher">
+        UPDATE t_trainstaff SET t_name = #{teacher.name}, t_age = #{teacher.age}, t_avatar = #{teacher.avatarImg}, t_blurb = #{teacher.blurb}, t_worktime = #{teacher.workTime}
+        WHERE t_id = #{teacher.id}
+    </update>
+
+    <update id="deleteTeacherById">
+        UPDATE t_trainstaff SET t_exist = 0
+        WHERE t_id = #{teacherId}
+    </update>
+
+</mapper>

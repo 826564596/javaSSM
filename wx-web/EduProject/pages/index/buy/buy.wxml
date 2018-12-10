@@ -1,0 +1,4 @@
+ 
+  <image class='logoPic' mode="aspectFill" src='{{course.imgUrl}}'></image>
+ <button class='btn' bindtap="buy" data-cid='{{course.courseNo}}'>购买{{course.courseName}}</button>
+ 

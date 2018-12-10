@@ -1,0 +1,93 @@
+<!--pages/schedule/schedule.wxml-->
+
+<view class='page'>
+  <!--顶部时间  -->
+  <view class='timeBox white_bg tc flex'>
+    <view class='timeItem sub' wx:for="{{dateweekArr}}" wx:key="{{index}}">
+      <view class='week'>{{item[0]}}</view>
+      <!-- <view class="mt10 {{nowdy==item[2]?'selected':''}}" catchtap='timeGet' data-week="{{item[0]}}" data-month="{{item[1]}}" data-date="{{item[2]}}">{{item[2]}}</view> -->
+      <view class="mt10 {{nowweek==item[0]?'selected':''}}" catchtap='timeGet' data-week="{{item[0]}}" data-month="{{item[1]}}" data-date="{{item[2]}}">{{item[2]}}</view>
+    </view>
+  </view>
+
+  <!--tab  -->
+  <view class='white_bg gridXt tc'>
+    <view class="tabItem {{tabIndex==1?'topTab_on mainColor':''}}" catchtap="onTabChangeTap" data-tab-index="1">我的课表</view>
+    <view class="tabItem {{tabIndex==2?'topTab_on mainColor':''}}" catchtap="onTabChangeTap" data-tab-index="2">所有课表</view>
+  </view>
+
+  <!--课表 我的/全部 -->
+  <view class="mt10">
+    <view class='schList' wx:for="{{cList}}" wx:key="key">
+      <view wx:if="{{item.isExist==0}}" class='schItem noExist-bg mb10'>
+        <view class='itemTop'>
+          <view>{{item.courseName}}</view>
+          <view class='duration bold' name="">时间：{{item.teachTime}}</view>
+          <view class='teacher'>授课老师：{{item.teacher.name}}</view>
+          <view class='teacher'>课时数：{{item.hours}}课时</view>
+        </view>
+        <view class='duration bold noExist' name="">该课程已下架</view>
+      </view>
+      <view wx:else class="chItem mb10 {{needShowCourseId==item.courseNo?'red_bg':'white_bg'}}">
+        <view class='itemTop '>
+          <view>{{item.courseName}}</view>
+          <view class='duration bold' name="">时间：{{item.teachTime}}</view>
+          <view class='teacher'>授课老师：{{item.teacher.name}}</view>
+          <view class='teacher'>课时数：{{item.hours}}课时</view>
+          <view class='teacher'>上课地点：山亚国际中心</view>
+        </view>
+        <!-- <text wx:if="{{item.checkState==0}}" class='checkText1'>未考核</text> -->
+        <text wx:if="{{item.checkState==1}}" class='checkText2 bold'>后台考核中...</text>
+        <text wx:elif="{{item.checkState==2}}" class='checkText3 bold'>考核已通过</text>
+        <text wx:elif="{{item.checkState==3}}" class='checkText4 bold'>考核未通过</text>
+
+        <button wx:if="{{item.checkState==0 && item.signNum==item.hours}}" class='besBtn noBorder mainColor_bg' bindtap='toCheckCourse' data-cid='{{item.courseNo}}'>申请考核</button>
+      
+        <button wx:elif="{{item.checkState==0 && item.isTodayCourse && item.isSign}}" class='besBtn' plain='true' hover-class="none">已经签到</button>
+
+        <button wx:elif="{{item.checkState==0 && item.isTodayCourse && item.courseTimeIsEnd}}" class='besBtn ended noBorder' hover-class="none">已经结束</button>
+
+        <button wx:elif="{{item.checkState==0 && item.isTodayCourse}}" class='besBtn mainColor_bg noBorder' bindtap='toSign' data-cid='{{item.courseNo}}'>签到</button> 
+        
+        <view class='itemBot' wx:if="{{item.isBooking}}">
+          <text>学习进度：</text>
+          <progress percent="{{item.progress*100}}" color="#9bd3d3" show-info active/>
+        </view> 
+        <view class='itemBot flex' wx:else>
+          <text class='text2'>还未预约该门课程哦</text> 
+          <button class='besBtn mainColor_bg noBorder' bindtap='toBooking' data-cid='{{item.courseNo}}' data-ctype='{{item.courseClass}}'>去预约</button>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+
+
+  <!--没有更多了-->
+  <view class="nothing grey mt10 mb10 tc f14 flex" wx:if="{{cList.length>0}}">
+    <text class="line sub mr10"></text>
+    <text>没有更多了</text>
+    <text class="line sub ml10"></text>
+  </view> 
+
+  <!--我的课表为空  -->
+  <view class='tc' wx:if="{{tabIndex==1 && cList.length==0}}">
+    <view>
+      <image class='noData' mode='aspectFill' src='http://www.ixiaochengxu.cc/resource/images/common/no-course.png'></image>
+    </view>
+    <view class='f14 grey mt15'>抱歉您还未报课，暂无课表</view>
+    <view class='forwardBtn mainColor_bg' bindtap="toShowCourse">前去选课</view>
+  </view>
+
+  <!--没有数据  -->
+  <view class="nodata flex" wx:if="{{tabIndex==2 && cList.length==0}}">
+    <view>
+      <text class="iconfont icon-kongbaiyemian"></text>
+    </view>
+    <view>
+      <text>暂时没有课表数据</text>
+    </view>
+  </view>
+
+</view>

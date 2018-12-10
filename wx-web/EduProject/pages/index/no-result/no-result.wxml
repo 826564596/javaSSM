@@ -1,0 +1,8 @@
+<!--pages/index/no-result/no-result.wxml-->
+<!-- 搜索结果为空 -->
+<view class='tc'>
+  <view>
+    <image class='noData' mode='aspectFill' src='http://www.ixiaochengxu.cc/resource/images/common/no-course.png'></image>
+  </view>
+  <view class='grey'>抱歉 没有相关课程信息，请返回重试</view>
+</view> 

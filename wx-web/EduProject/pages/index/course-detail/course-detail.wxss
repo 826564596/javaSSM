@@ -1,0 +1,249 @@
+/* pages/index/course-detail/course-detail.wxss */
+@import "../index.wxss";
+
+/*顶部  */
+
+.logoPic {
+  width: 100%;
+  height: 450rpx;
+  /* border-radius: 2%; */
+  /* margin: 10rpx 10rpx; */
+  /* border: 1px solid red; */
+}
+
+.classInfo {
+  padding: 30rpx;
+}
+
+.className {
+  line-height: 44rpx;
+}
+
+.olderPri {
+  text-decoration: line-through;
+}
+
+.parpantPic {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+/*体验课课程简介  */
+
+.claDescBox {
+  padding: 0 30rpx;
+  text-align: justify;
+  color: #666;
+}
+
+.claDesc {
+  padding: 30rpx 0;
+}
+
+.descCon {
+  height: auto;
+  padding-bottom: 20rpx;
+  font-size: 26rpx;
+}
+
+/*精品课课程简介  */
+
+.label {
+  /* width: 22%; */
+  width: auto;
+  text-align: center;
+  /* line-height: 22px; */
+  line-height: 36px;
+  /* margin: 0 3% 8rpx 0; */
+  margin: 20rpx 0;
+}
+
+.label::before {
+  border-color: currentColor;
+}
+
+.claDescBox .black {
+  font-size: 30rpx;
+  color: #2a2a2a;
+}
+
+.li {
+  position: relative;
+  padding-left: 30rpx;
+  margin-bottom: 6rpx;
+}
+
+.li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 22rpx;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background-color: #666;
+}
+
+/*授课老师  */
+
+.curTeaBox {
+  padding: 0 30rpx;
+}
+
+.curTeaTit {
+  padding-top: 30rpx;
+}
+
+.curTea {
+  padding: 30rpx 0;
+}
+
+.curTea:active {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.teaHeadPic {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.curTeaName {
+  color: #666;
+}
+
+.arrowN {
+  width: 20rpx;
+  height: 20rpx;
+  border: 2rpx solid ;
+  border-color: transparent #888 #888  transparent;
+  -webkit-transform: rotate(-45deg); 
+  transform: rotate(-45deg);
+}
+
+/*报课须知  */
+
+.noticeBox {
+  padding: 0 30rpx;
+  margin-bottom: 120rpx;
+}
+
+.notTit {
+  padding: 30rpx 0;
+}
+
+.notTit .iconfont {
+  font-size: 38rpx;
+}
+
+.notCon {
+  font-size: 30rpx;
+  line-height: 40rpx;
+  padding-bottom: 30rpx;
+}
+
+/*底部  */
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 92rpx;
+  /* opacity:1; */
+}
+
+.footer .flex .sub {
+  padding-top: 6rpx;
+  /* opacity:1; */
+}
+
+.footer .flex .sub:active {
+  background-color: rgba(0, 0, 0, 0.05);
+  /* opacity:1; */
+}
+
+.footer  .sub .iconfont {
+  font-size: 36rpx;
+}
+
+.footer  .sub .sc {
+  line-height: 32rpx;
+}
+.subBtn{
+  border-radius: 0;
+  line-height: 50rpx;
+  background-color: #fff;
+}
+.subBtn::after{
+  border: 0;
+}
+/*体验课 底部  */
+
+.tiyan .partBtn {
+  width: 40%;
+  color: #fff;
+  border-radius: 0;
+  margin-top: 0;
+}
+
+.partBtn::after {
+  width: 0;
+  height: 0;
+}
+
+.tiyan .partBtn:active {
+  opacity: 0.85;
+}
+
+/*精品课 底部  */
+
+.purBtn::after {
+  width: 0;
+  height: 0;
+}
+
+.purBtn:active {
+  opacity: 0.8;
+}
+
+.jingpin .purBtn, .partBtn {
+  width: 28%;
+  color: #fff;
+  border-radius: 0;
+  line-height: 92rpx;
+  font-size: 30rpx;
+}
+
+.jingpin .partBtn {
+  margin-top: 0;
+}
+
+.getCode {
+  width: 200rpx;
+  height: 24px;
+  line-height: 28px;
+  font-size: 22rpx;
+}
+
+.getCode::before{
+  border-color: currentColor;
+}
+
+.bookingNum{
+  float: right;
+  /* font-size: 28rpx; */
+  color: #888;
+}
+
+.notAllowBookText{
+  color: #9bd3d3;
+  text-align: center;
+}
+
+.vedioMargin{
+  margin-top: 30rpx;
+}
+
+.cancelBookBtu{
+  background-color: #ff945b;
+}

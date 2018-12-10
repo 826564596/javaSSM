@@ -1,0 +1,23 @@
+<!--视频实录  -->
+<view class='classBox'>
+  <view class="vedioItem white_bg mb10" wx:for="{{vlist}}" wx:key="key">
+    <video class='vedio' id="{{item.courseNo}}" src="{{item.videoUrl}}" show-center-play-btn poster="{{item.imgUrl}}" controls bindplay="toPlay"></video>
+    <view class='vedioTit' bindtap="toShowDetail" data-ctype='{{item.courseClass}}' data-cid='{{item.courseNo}}'>{{item.courseName}}</view>
+  </view>
+</view>
+
+<!-- 上一页/下一页 -->
+<view class='classBox'>
+  <text wx:if="{{pageNo > 1}}" bindtap='showOther' data-type="previous" class='fl f14 arrowL'>上一页</text>
+  <text wx:if="{{hasMoreVideo}}" bindtap='showOther' data-type="next" class='fr f14 arrowR'>下一页</text>
+</view>
+
+<!--没有更多了-->
+<view wx:if="{{hasMoreVideo==false}}" class="nothing grey mt10 mb10 tc f14 flex">
+  <text class="line sub mr10"></text>
+  <text>没有更多了</text>
+  <text class="line sub ml10"></text>
+</view> 
+
+
+

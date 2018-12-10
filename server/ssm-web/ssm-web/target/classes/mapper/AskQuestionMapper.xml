@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fjut.dao.AskQuestionDao">
+
+    <resultMap id="question" type="com.fjut.model.Question">
+        <id column="q_no" property="q_no" />
+        <result column="question" property="question" />
+        <result column="c_id" property="c_id" />
+        <result column="name" property="name" />
+        <result column="answer" property="answer" />
+    </resultMap>
+
+
+    <!--<resultMap id="question-1" type="com.fjut.model.Question">-->
+
+        <!--<result column="question" property="question" />-->
+        <!--<result column="answer" property="answer" />-->
+    <!--</resultMap>-->
+    <!--添加一条提问记录-->
+    <insert id="addAskQuestion">
+        INSERT INTO ask_question (q_no,question,c_id,name,answer)
+        VALUES (q_no, #{question}, #{c_id},#{name},answer)
+    </insert>
+    <!--管理员查询问题表-->
+    <select id="getAllQuestion" resultMap="question">
+        SELECT * FROM ask_question
+    </select>
+    <!--管理员回答问题-->
+    <update id="updateAnswer">
+        UPDATE ask_question SET answer = #{answer}
+        WHERE q_no = #{q_no}
+    </update>
+
+    <!--用户查询问题表-->
+    <select id="getUserQuestion" resultMap="question">
+        SELECT * FROM ask_question
+        where name=#{name}
+    </select>
+
+
+</mapper>

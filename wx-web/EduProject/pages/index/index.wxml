@@ -1,0 +1,158 @@
+<!--index.wxml-->
+<!-- <view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+  <view>
+    <button bindtap='bindtest'>test</button>
+  </view>
+</view> -->
+
+<view class='topView' bindtap='toShowSearch'>
+  <icon class="weui-icon-search_in-box mySearch" type="search" size="20"></icon>
+  <text class='text1'>搜索课程</text>
+</view> 
+
+<!--顶部  -->
+<view class="swiper">
+  <swiper indicator-dots="{{indicatorDots}}" indicator-active-color="#fff" autoplay="{{autoplay}}" interval="{{interval}}">
+    <swiper-item>
+      <image src="{{agencyInfo.firstImg}}" class="slide-image" mode="aspectFill" />
+    </swiper-item>
+    <swiper-item>
+      <image src="{{agencyInfo.secondImg}}" class="slide-image" mode="aspectFill" />
+    </swiper-item>
+    <swiper-item>
+      <image src="{{agencyInfo.thirdImg}}" class="slide-image" mode="aspectFill" />
+    </swiper-item>
+  </swiper>
+</view>
+
+<!--地址导航  -->
+<view class='navContainer white_bg flex'>
+  <view class='shopBox sub '>
+    <view class='name lineText'>{{agencyInfo.aName}}</view>
+    <view class='add grey f14 mt5 lineText2 '>{{agencyInfo.gps.address}}</view>
+  </view>
+  <view class='navBox mainColor tc' bindtap="toGps">
+    <view class='iconfont icon-daohang'></view>
+    <view class='f14'>导航到店</view>
+  </view>
+</view>   
+
+<!--简介栏  -->
+ <view class='couponBox' bindtap='goInfoDetail'>
+  <view class='cpContent'>  
+    <text>{{agencyInfo.aInfo}}</text>
+  </view>
+  <view class='cpContent2'>  
+    地 址:<text class='addressText'>{{agencyInfo.gps.name}}</text>
+    联系方式:<text class='phoneNumText'>{{agencyInfo.phoneNum}}</text>
+  </view>
+</view> 
+
+<!--分类导航  -->
+ <view class='tabBox tc f14 '> 
+  <view class='tab ' bindtap="toShowMore" data-pagetype="tCourse">
+    <image class='inTabPic jingpin' mode='aspectFill' src='http://www.ixiaochengxu.cc/resource/images/train/course.png'></image>
+    <view class='lineText mt5'>精品课程</view>
+  </view>
+
+  <view class='tab ' bindtap="toShowMore" data-pagetype="schedule">
+    <image class='inTabPic kebiao' mode='aspectFill' src='http://www.ixiaochengxu.cc/resource/images/train/schedule.png'></image>
+    <view class='lineText mt5'>培训课表</view>
+  </view>
+
+  <view class='tab ' bindtap="toShowMore" data-pagetype="teacher">
+    <image class='inTabPic laoshi' mode='aspectFill' src='http://www.ixiaochengxu.cc/resource/images/train/teachers.png'></image>
+    <view class='lineText mt5'>授课老师</view>
+  </view>
+
+  <view class='tab ' bindtap="toShowMore" data-pagetype="video">
+    <image class='inTabPic shipin' mode='aspectFill' src='http://www.ixiaochengxu.cc/resource/images/train/video.png'></image>
+    <view class='lineText mt5'>视频实录</view>
+  </view>
+</view>
+
+<!--体验课  -->
+<view class='classBox '>
+  <view class='title arrowR '>
+    <text class='bold'>体验课</text>
+    <text class='fr f14' bindtap="toShowMore" data-pagetype="eCourse">更多</text>
+  </view>
+  <view class='claList white_bg' wx:for="{{elist}}" wx:key="key">
+    <view class="claItem {{item.price==0?'free':'noFree'}} flex mb10" bindtap="toShowDetail" data-ctype='{{item.courseClass}}' data-cid='{{item.courseNo}}'>
+      <view class="{{item.price==0?'':'itemLf'}} sub">
+        <view class='bold lineText'>{{item.courseName}}</view>
+        <view class='flex  mt15'>
+           <view class='parpantPicBox'>
+               <!-- <image class='parpantPic' mode='aspectFill' src='{{item.imgUrl}}'></image>   -->
+              <!-- <image class='parpantPic' mode='aspectFill' src='{{item.imgUrl}}' wx:for="{{item.imgUrl}}" wx:key="key"></image>  -->
+              <!-- <image class='parpantPic transLeft1' mode='aspectFill' src='/images/default.png'></image> 
+              <image class='parpantPic transLeft1' mode='aspectFill' src='/images/default.png'></image>
+               <image class='parpantPic transLeft1' mode='aspectFill' src='/images/default.png'></image> -->
+          </view>
+
+          <view class='f14'>{{item.bookingNum}}人已预约</view>
+        </view>
+      </view>
+      <view class="part {{item.price==0?'freePart':'noFreePart'}} tc">
+        <view wx:if="{{item.price == 0}}">
+          <view class=' lineText'>免费</view>
+        </view>
+        <view wx:else>
+          <view class=' lineText'>
+            <text class='f12'>￥</text>{{item.price}}
+          </view>
+        </view>
+        <view class="partBtn white_bg {{item.price==0?'bul':'pur'}} lineText">查看详情</view>
+      </view>
+    </view>
+
+  </view>
+</view>
+
+<!--精品课  -->
+<view class='classBox '>
+  <view class='title arrowR'>
+    <text class='bold'>精品课程</text>
+    <text class='fr f14' bindtap="toShowMore" data-pagetype="tCourse">更多</text>
+  </view>
+  <view wx:for="{{tlist}}" wx:key="key">
+    <view class='coreClsItem flex white_bg mb10' bindtap="toShowDetail" data-ctype='{{item.courseClass}}' data-cid='{{item.courseNo}}'>
+      <image class='coreClaPic mr10' mode="aspectFill" src='{{item.imgUrl}}'></image>
+      <view class='sub flex flexC flexMBtw'>
+        <view class='ccTit lineText2 bold'>{{item.courseName}}</view>
+        <view class='grey f12 flex flexW'>
+            <view class='classLabel mr15' wx:for="{{['入门经典','精品课','面向对象']}}" wx:key="key">{{item}}</view>  
+        </view>
+        <view class='flex flexMBtw flexCCen'>
+          <view class='keshi'>{{item.hours}}课时</view>
+          <view class='besBtn mainColor_bg'>查看详情</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!--视频实录  -->
+<view class='classBox '>
+  <view class='title arrowR'>
+    <text class='bold'>视频实录</text>
+    <text class='fr f14' bindtap="toShowMore" data-pagetype="video">更多</text>
+  </view>
+  <!-- <view wx:if="{{is_yuyue==0}}"> -->
+    <view class="vedioItem white_bg mb10" wx:for="{{elist}}" wx:key="key">
+      <video class='vedio' id="{{item.courseNo}}" src="{{item.videoUrl}}" show-center-play-btn poster="{{item.imgUrl}}" controls bindplay="toPlay">
+      </video>
+      <view class='vedioTit'>{{item.courseName}}视频实录</view>
+    </view>
+  <!-- </view> -->
+</view>

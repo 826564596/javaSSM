@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fjut.dao.BookingDao">
+    
+    <resultMap id="bookingRecord" type="com.fjut.model.BookingRecord">
+        <id column="b_id" property="bId" />
+        <result column="open_id" property="openId" />
+        <result column="bookingDate" jdbcType="DATE" property="bookingDate" javaType="java.sql.Date" />
+        <result column="progress" property="progress" />
+        <result column="signNum" property="signNum" />
+        <result column="checkState" property="checkState" />
+        <association property="course" column="c_id" javaType="com.fjut.model.Course">
+            <id column="c_id" property="courseNo" />
+            <result column="c_name" property="courseName" />
+            <result column="c_blurb" property="blurb" />
+            <result column="c_video" property="videoUrl" />
+            <result column="c_img" property="imgUrl" />
+            <result column="c_class" property="courseClass" />
+            <result column="c_beginDate" jdbcType="DATE" property="beginDate" javaType="java.sql.Date"/>
+            <result column="c_bookingNum" property="bookingNum" />
+            <result column="c_hours" property="hours" />
+            <result column="c_exist" property="isExist" />
+            <result column="c_teachTime" property="teachTime" />
+            <result column="c_price" property="price" />
+            <result column="c_limitBookingNum" property="limitBookingNum" />
+            <association property="teacher" column="c_tId" javaType="com.fjut.model.Teacher">
+                <id column="t_id" property="id" />
+                <result column="t_name" property="name" />
+                <result column="t_age" property="age" />
+                <result column="t_avatar" property="avatarImg" />
+                <result column="t_blurb" property="blurb" />
+                <result column="t_worktime" property="workTime" />
+                <result column="t_exist" property="isExist" />
+            </association>
+        </association>
+    </resultMap>
+
+    <!--查询全部约课记录-->
+    <select id="getAllBookings" resultMap="bookingRecord">
+        select * from t_booking b, t_course c, t_trainstaff t where b.c_id = c.c_id and c.c_tId = t.t_id
+    </select>
+
+    <!--查询全部待考核约课记录-->
+    <select id="getAllCheckingRecord" resultMap="bookingRecord">
+        select * from t_booking b, t_course c, t_trainstaff t
+        where b.c_id = c.c_id and c.c_tId = t.t_id and b.checkState = 1
+    </select>
+
+    <!--查询某用户的全部约课记录-->
+    <select id="getBookingsByOpenId" parameterType="String" resultMap="bookingRecord">
+        select * from t_booking b, t_course c, t_trainstaff t where b.open_id = #{openId} and b.c_id = c.c_id and c.c_tId = t.t_id
+    </select>
+
+    <!--查询用户某门课程的一条约课记录-->
+    <select id="getOneBookingRecord" resultMap="bookingRecord">
+        select * from t_booking b, t_course c, t_trainstaff t where b.open_id = #{openId}
+        and b.c_id = #{courseId} and b.c_id = c.c_id and c.c_tId = t.t_id
+    </select>
+
+    <!--添加一条约课记录-->
+    <insert id="addBookingRecord">
+        INSERT INTO t_booking (open_id, c_id, bookingDate)
+        VALUES (#{openId}, #{bookingRecord.course.courseNo}, #{bookingRecord.bookingDate})
+    </insert>
+
+    <!--更新一条约课记录的学习进度和签到次数-->
+    <update id="updateBookingRecord">
+        UPDATE t_booking SET progress = #{bookingRecord.progress}, signNum = #{bookingRecord.signNum}
+         WHERE b_id = #{bookingRecord.bId}
+    </update>
+
+    <!--更新一条约课记录的考核状态-->
+    <update id="updateCheckState">
+        UPDATE t_booking SET checkState = #{bookingRecord.checkState}
+        WHERE b_id = #{bookingRecord.bId}
+    </update>
+
+    <delete id="deleteOneBookingRecord">
+        DELETE FROM t_booking WHERE open_id = #{openId} AND c_id = #{courseId}
+    </delete>
+
+</mapper>

@@ -1,0 +1,53 @@
+<!--pages/index/teacher-detail/teacher-detail.wxml-->
+<!--顶部背景  -->
+<view class='topBg mainColor_bg'>
+  <view class='elli mainColor_bg'></view>
+</view>
+
+<!--  -->
+<view class='teaBox '>
+  <!--老师头像  -->
+  <view class='teahead white_bg mb15'>
+    <button class='share mainColor' open-type="share">
+      <text class='iconfont icon-mingpianfenxiang'></text>
+      <view class='f14'>推荐TA</view>
+    </button>
+    <view class='tc'>
+      <image class='teaPic' mode='aspectFill' src='{{teacher.avatarImg}}'></image>
+      <view class='mt10'>{{teacher.name}}</view>
+      <view class='name grey mt10'>从业时长：{{teacher.workTime}}年</view>
+    </view>
+    <view class=' tc flex mt20 grey gridXt'>
+      <view class="tabItem sub {{subTit == 1?'mainColor bold':''}} " catchtap="toTab" data-index="1">老师简介</view>
+      <view class="tabItem sub {{subTit == 2?'mainColor bold':''}}" catchtap="toTab" data-index="2">主授课程</view>
+    </view>
+  </view>
+
+
+  <!--老师简介  -->
+  <view class='descBox white_bg' wx:if="{{subTit==1}}">
+     <text>{{teacher.blurb}}</text>
+  </view>
+
+  <!--主授课程  -->
+  <view class='' wx:if="{{subTit==2}}">
+    <view wx:for="{{clist}}" wx:key="key">
+      <view class='coreClsItem flex white_bg mb10' bindtap="toShowDetail" data-ctype='{{item.courseClass}}' data-cid='{{item.courseNo}}'>
+        <image class='coreClaPic mr10' mode="aspectFill" src='{{item.imgUrl}}'></image>
+        <view class='sub flex flexC flexMBtw'>
+          <view class='ccTit lineText2'>{{item.courseName}}</view>
+          <view class='grey f12 flex flexW' wx:for="{{['入门经典','精品课','面向对象']}}" wx:key="key">
+            <view class='classLabel mr15'>{{item}}</view>
+          </view>
+          <view class='flex flexMBtw flexCCen'>
+            <view class='keshi F14'>{{item.hours}}课时</view>
+            <view class='besBtn mainColor_bg'>查看详情</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>  
+    <!--没有更多了-->
+
+</view>
+  

@@ -1,0 +1,60 @@
+<!-- 体验课列表 -->
+<view wx:if="{{courseType=='tCourse'}}">
+  <view wx:for="{{courseList}}" wx:key="key">
+    <view class='coreClsItem flex white_bg mb10' bindtap="toShowDetail" data-ctype='{{item.courseClass}}' data-cid='{{item.courseNo}}'>
+      <image class='coreClaPic mr10' mode="aspectFill" src='{{item.imgUrl}}'></image>
+      <view class='sub flex flexC flexMBtw'>
+        <view class='ccTit lineText2 bold'>{{item.courseName}}</view>
+        <view class='grey f12 flex flexW'>
+            <view class='classLabel mr15' wx:for="{{['入门经典','精品课','面向对象']}}" wx:key="key">{{item}}</view>
+        </view>
+        <view class='flex flexMBtw flexCCen'>
+          <view class='keshi'>{{item.hours}}课时</view>
+          <view class='besBtn mainColor_bg'>查看详情</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 精品课列表 -->
+<view wx:elif="{{courseType=='eCourse'}}">
+  <view class='claList white_bg' wx:for="{{courseList}}" wx:key="key">
+    <view class="claItem {{item.price==0?'free':'noFree'}} flex mb10" bindtap="toShowDetail" data-ctype='{{item.courseClass}}' data-cid='{{item.courseNo}}'>
+      <view class="{{item.price==0?'':'itemLf'}} sub">
+        <view class='bold lineText'>{{item.courseName}}</view>
+        <view class='flex  mt15'>
+           <view class='parpantPicBox'>
+          </view>
+          <view class='f14'>{{item.bookingNum}}人已报名</view>
+        </view>
+      </view>
+      <view class="part {{item.price==0?'freePart':'noFreePart'}} tc">
+        <view wx:if="{{item.price == 0}}">
+          <view class=' lineText'>免费</view>
+        </view>
+        <view wx:else>
+          <view class=' lineText'>
+            <text class='f12'>￥</text>{{item.price}}
+          </view>
+        </view>
+        <view class="partBtn white_bg {{item.price==0?'bul':'pur'}} lineText">查看详情</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!--没有更多了-->
+<view wx:if="{{hasMoreCourse==false}}" class="nothing grey mt10 mb10 tc f14 flex">
+  <text class="line sub mr10"></text>
+  <text>没有更多了</text>
+  <text class="line sub ml10"></text>
+</view> 
+
+<!--加载更多-->
+<view wx:else class="grey mt10 mb10 tc f16 flex">
+  <text class="line sub mr10"></text>
+  <text bindtap='showMore'>点击此处加载更多</text>
+  <text class="line sub ml10"></text>
+</view> 
+  

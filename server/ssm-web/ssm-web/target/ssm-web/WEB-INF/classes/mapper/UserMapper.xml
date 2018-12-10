@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fjut.dao.UserDao">
+
+    <!--测试数据开始-->
+    <resultMap id="userInfo" type="com.fjut.model.UserInfo">
+        <id column="open_id" property="openId" />
+        <result column="nick_name" property="nickName" />
+        <result column="avatar_url" property="avatarUrl" />
+    </resultMap>
+
+    <select id="selectUserByOpenId" resultMap="userInfo">
+        SELECT * FROM t_user
+        WHERE open_id = #{userInfo.openId}
+    </select>
+    <!--测试数据结束-->
+
+    <insert id="insertWxUserInfo">
+        INSERT INTO t_user VALUES (#{openId},#{nickName},#{avatarUrl})
+    </insert>
+
+
+
+</mapper>

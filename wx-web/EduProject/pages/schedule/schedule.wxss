@@ -1,0 +1,274 @@
+/* pages/schedule/schedule.wxss */
+@import "../trainCommon.wxss";
+@import "/css/DuoguanTrain/DuoguanTrain-template-default.wxss";
+
+.page {
+  padding: 20rpx 30rpx;
+}
+
+.timeBox {
+  padding: 40rpx 0;
+  border-radius: 8rpx 8rpx 0 0;
+}
+
+.timeBox .week {
+  color: #666;
+}
+
+.selected {
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border-radius: 50%;
+  color: #fff;
+  margin: 20rpx auto;
+}
+
+/*  */
+
+.tabItem {
+  display: inline-block;
+  width: 50%;
+  padding: 30rpx 0;
+}
+
+.topTab_on::after {
+  width: 35%;
+}
+
+.subTabBox {
+ padding: 0 30rpx;
+}
+
+.smaBlo{
+  padding: 14rpx;
+}
+
+/*列表  */
+
+.schItem {
+  border-radius: 10rpx;
+}
+
+.itemTop {
+  padding: 30rpx;
+  line-height: 60rpx;
+  /* box-shadow: 0px 5px 16px -5px rgba(123, 123, 123, 0.12); */
+}
+
+.itemBot {
+  padding: 30rpx;
+}
+
+.duration {
+  font-size: 36rpx;
+}
+
+.teacher {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.parpantPic {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+button.besBtn {
+  /* float: right; */
+  width: 200rpx;
+  margin-right: 20rpx;
+  padding: 0 40rpx;
+  /* border-radius: 0rpx; */
+}
+
+.checkText1{
+  margin-left: 30rpx;
+  /* color: slateblue; */
+}
+
+.checkText2{
+  margin-left: 30rpx;
+  color: blue;
+}
+
+.checkText3{
+  margin-left: 30rpx;
+  color: green;
+}
+
+.checkText4{
+  margin-left: 30rpx;
+  color: yellow;
+}
+
+.noBorder::after {
+  width: 0;
+  height: 0;
+}
+
+.besed {
+  background-color: #fff;
+}
+
+.besed:active {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.besed::after {
+  border-color: currentColor;
+}
+
+.ended {
+  color: #aaa;
+}
+
+/*我的课表为空  */
+
+.noData {
+  width: 300rpx;
+  height: 300rpx;
+  margin-top: 90rpx;
+}
+
+.forwardBtn {
+  width: 250rpx;
+  margin: 20rpx auto;
+  line-height: 70rpx;
+  color: #fff;
+  border-radius: 8rpx;
+}
+
+.forwardBtn:active {
+  opacity: 0.85;
+}
+
+/*弹窗  不能预约*/
+
+.innerBox {
+  position: relative;
+  width: 80%;
+  padding: 50rpx 80rpx;
+  border-radius: 10rpx;
+}
+
+.learnDet {
+  line-height: 70rpx;
+  border-radius: 8rpx;
+  margin-top: 40rpx;
+  color: #fff;
+}
+
+.learnDet:active {
+  opacity: 0.85;
+}
+
+.cloBtn {
+  position: absolute;
+  top: 0;
+  right: 50rpx;
+  width: 54rpx;
+  height: 60rpx;
+  border-radius: 0 0 50rpx 50rpx;
+}
+
+.cloBtn::before, .cloBtn::after {
+  content: "";
+  position: absolute;
+  bottom: 30rpx;
+  right: 14rpx;
+  width: 26rpx;
+  height: 4rpx;
+  background-color: #fff;
+}
+
+.cloBtn::before {
+  transform: rotate(45deg);
+}
+
+.cloBtn::after {
+  transform: rotate(-45deg);
+}
+
+.cloBtn:active {
+  opacity: 0.85;
+}
+
+/*弹窗 筛选课程  */
+
+.scrllBox {
+  max-height: 260rpx;
+  font-size: 30rpx;
+}
+
+.sxclaItem:last-child {
+  margin-bottom: 50rpx;
+}
+
+.scrllBox .mainColor_bg {
+  color: #fff;
+}
+
+.sxclaItem {
+  padding: 15rpx 0;
+}
+
+.blurCen {
+  position: absolute;
+  bottom: 40rpx;
+  left: 0;
+  width: 100%;
+}
+
+.blurCen view {
+  height: 12rpx;
+}
+
+.cen1 {
+  background-color: rgba(255, 255, 255, 0.55);
+}
+
+.cen2 {
+  background-color: rgba(255, 255, 255, 0.65);
+}
+
+.cen3 {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.cen4 {
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.cen5 {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+
+/* 自定义样式 */
+.noExist{
+  color: red;
+  text-align: center;
+}
+
+.noExist-bg{
+  background-color: #ccc;
+}
+
+.text2{
+  color: red;
+  font-size: 30rpx;
+}
+
+.red_bg{
+  background-color: #D4D4D4
+}
+
+.blockText{
+  display: block;
+}
+
+.otherColor_bg{
+  background-color: #fff;
+  color: #9bd3d3;
+}

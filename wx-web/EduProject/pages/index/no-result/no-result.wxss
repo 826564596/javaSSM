@@ -1,0 +1,8 @@
+/* pages/index/no-result/no-result.wxss */
+@import "../../trainCommon.wxss";
+
+.noData {
+  width: 300rpx;
+  height: 300rpx;
+  margin-top: 90rpx;
+}

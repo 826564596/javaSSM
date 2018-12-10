@@ -1,0 +1,52 @@
+{
+  "pages":[
+    "pages/login/login",
+    "pages/index/index",
+    "pages/index/search/search",
+    "pages/index/no-result/no-result",
+    "pages/index/agency/agency",
+    "pages/index/cmore/cmore",
+    "pages/index/video/video",
+    "pages/index/course-detail/course-detail",
+    "pages/index/buy/buy",
+    "pages/index/ask/ask",
+    "pages/index/my-question/my-question",
+    "pages/index/teacher/teacher",
+    "pages/index/teacher-detail/teacher-detail",
+    "pages/schedule/schedule",
+    "pages/logs/logs",
+    "pages/user/user"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#ddd",
+    "navigationBarTitleText": "v课堂教育培训系统",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar":{
+    "color": "#666",
+    "selectedColor": "#9bd3d3",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list":[
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tabbar/train.png",
+        "selectedIconPath": "images/tabbar/train_in.png"
+      },
+      {
+        "pagePath": "pages/schedule/schedule",
+        "text": "课表",
+        "iconPath": "images/tabbar/course.png",
+        "selectedIconPath": "images/tabbar/course_in.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "images/tabbar/user.png",
+        "selectedIconPath": "images/tabbar/user_in.png"
+      }
+    ]
+  }
+}

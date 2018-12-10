@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fjut.dao.AgencyDao">
+    
+    <resultMap id="agency" type="com.fjut.model.Agency">
+        <id column="a_name" property="aName" />
+        <result column="firstImg" property="firstImg" />
+        <result column="secondImg" property="secondImg" />
+        <result column="thirdImg" property="thirdImg" />
+        <result column="a_info" property="aInfo" />
+        <result column="address" property="address" />
+        <result column="phoneNum" property="phoneNum" />
+    </resultMap>
+
+    <select id="getAllAgency" resultMap="agency">
+        SELECT * FROM t_agency
+    </select>
+
+    <select id="getAgency" resultMap="agency">
+        SELECT * FROM t_agency
+    </select>
+
+    <update id="updateAgency">
+        UPDATE t_agency SET firstImg = #{agency.firstImg}, secondImg = #{agency.secondImg},
+                            thirdImg = #{agency.thirdImg}, a_info = #{agency.aInfo},
+                            address = #{agency.address}, phoneNum = #{agency.phoneNum}
+                        WHERE a_name = #{agency.aName}
+    </update>
+
+</mapper>

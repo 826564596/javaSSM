@@ -1,0 +1,27 @@
+<view style="text-align: center;">
+
+</view>
+
+<!-- <view wx:for="{{questionInfo}}" >
+<text>问题：{{questionInfo.question}}</text>
+<text>答案：{{questionInfo.answer}}</text>
+</view> -->
+
+<!-- 
+<view class='list-head'>列表测试</view>
+<view class='list-box'>
+    <view class='list-li mflex'  wx:for="{{app.globalData.questionInfo}}"  wx:key="index" >
+     
+   
+        <view class='list-con'><text>单价{{item.question}}</text></view> 
+        <view class='list-adr'><text>{{item.city}}</text></view>             
+    </view>
+</view> -->
+
+
+
+<view class="question-answer" style="text-align: center;"wx:for="{{questionInfo}}">
+<view class='question'>{{item.question}}</view>
+<view wx:if='{{item.answer!==null}}' class='answer'>{{item.answer}}</view>
+
+</view>

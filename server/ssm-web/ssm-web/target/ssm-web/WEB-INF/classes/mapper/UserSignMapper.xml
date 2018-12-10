@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fjut.dao.UserSignDao">
+    
+    <resultMap id="signRecord" type="com.fjut.model.SignRecord">
+        <id column="s_id" property="sId" />
+        <result column="c_id" property="courseNo" />
+        <result column="sign_date" jdbcType="TIMESTAMP" property="signDate" javaType="java.util.Date" />
+    </resultMap>
+
+    <select id="getSignRecordByOpenId" parameterType="String" resultMap="signRecord">
+        select * from t_sign s where s.open_id = #{openId}
+    </select>
+
+    <!--添加一条签到记录-->
+    <insert id="addSignRecord">
+        INSERT INTO t_sign (open_id, c_id, sign_date)
+        VALUES (#{openId}, #{signRecord.courseNo}, #{signRecord.signDate})
+    </insert>
+
+</mapper>

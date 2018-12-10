@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fjut.dao.WxSessionDao">
+
+    <insert id="insertWxSession">
+        INSERT INTO 3rd_session(sessionId,open_id,session_key,update_time) VALUES (#{sessionId},#{openId},#{sessionKey},#{date})
+    </insert>
+
+    <update id="updateWxSession">
+        UPDATE 3rd_session SET sessionId = #{sessionId}, session_key=#{sessionKey}, update_time=#{date} WHERE open_id= #{openId}
+    </update>
+
+    <select id="getOpenidBySessionId" parameterType="String" resultType="String">
+        SELECT open_id AS openId FROM 3rd_session WHERE sessionId = #{sessionId}
+    </select>
+
+    <select id="getSessionKeyBySessionId" parameterType="String" resultType="String">
+        SELECT session_key AS sessionKey FROM 3rd_session WHERE sessionId = #{sessionId}
+    </select>
+
+
+
+    <select id="checkSessionByopenId" parameterType="String" resultType="Integer">
+        SELECT COUNT(*) FROM 3rd_session WHERE open_id = #{openId}
+    </select>
+
+    <select id="checkSession" parameterType="String" resultType="Integer">
+        SELECT COUNT(*) FROM 3rd_session WHERE sessionId = #{sessionId}
+    </select>
+
+</mapper>

@@ -1,0 +1,16 @@
+
+
+
+<!-- <text class='text'>请输入对该课程的疑问</text> -->
+<form bindsubmit="formSubmit" >
+ <view class="section">
+  <textarea class='textarea' bindblur="bindTextAreaBlur"  placeholder="请输入问题(不多于140个字)" value="{{ceshi}}" />
+ </view> 
+  <view class="btn-area">
+    <button formType="submit" class='btn'>提交</button>
+  </view>
+</form>
+
+
+
+

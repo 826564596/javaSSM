@@ -1,0 +1,110 @@
+/* pages/index/teacher-detail/teacher-detail.wxss */
+@import "../../trainCommon.wxss";
+@import "/css/DuoguanTrain/DuoguanTrain-template-default.wxss";
+
+/*顶部背景  */
+
+.topBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 40rpx;
+  overflow: hidden;
+}
+
+.topBg .elli {
+  position: absolute;
+  top: 0;
+  left: -100rpx;
+  width: 950rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+/*main  */
+
+.teaBox {
+  margin-bottom: 112rpx;
+}
+
+.teahead {
+  position: relative;
+  width: auto;
+  margin: 20rpx 30rpx;
+  padding-top: 50rpx;
+  border-radius: 10rpx;
+}
+
+.teaPic {
+  width: 144rpx;
+  height: 144rpx;
+  border-radius: 50%;
+}
+
+.share {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 40rpx;
+  padding: 30rpx;
+  background-color: #fff;
+  line-height: 50rpx;
+}
+.share::after{
+  border: none;
+}
+.share:active {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.name {
+  color: #666;
+  font-size: 30rpx;
+}
+
+.tabItem {
+  padding: 30rpx 0;
+}
+
+/*简介  */
+
+.descBox {
+  width: auto;
+  margin: 20rpx 30rpx;
+  border-radius: 10rpx;
+  padding: 30rpx;
+  text-indent: 36rpx;
+  color: #666;
+  text-align: justify;
+  font-size: 30rpx;
+}
+
+/*主授课程  */
+
+.coreClsItem {
+  margin: 20rpx 30rpx;
+  width: auto;
+  padding: 30rpx;
+}
+
+/*底部按钮  */
+
+.footBtn {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: #fff;
+  border-radius: 0;
+  line-height: 92rpx;
+}
+
+.footBtn::after {
+  width: 0;
+  height: 0;
+}
+
+.footBtn:active {
+  background-color: rgba(28, 162, 126, 0.95);
+}

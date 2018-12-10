@@ -1,0 +1,132 @@
+<!--pages/index/course-detail/course-detail.wxml-->
+<!--顶部  -->
+<view class=' white_bg mb15'>
+  <image class='logoPic' mode="aspectFill" src='{{course.imgUrl}}'></image>
+  <view class='classInfo'>
+    <view class='className '>{{course.courseName}}</view>
+    <view class='scpri f14 grey mt5'>
+      <view wx:if="{{course.courseClass=='e'}}">
+        <text class='mr15'>时长：{{course.hours}}分钟</text>
+      </view>
+      <view wx:elif="{{course.courseClass=='t'}}">
+        <text class='mr15'>课时数：{{course.hours}}</text>
+      </view>
+      <view>
+        <text>开课日期：{{course.beginDate}}</text>
+      </view>
+      <view>
+        <text>上课地点：山亚国际中心</text>
+      </view>
+    </view>
+    <view class='scpri' wx:if="{{course.isBooking==false && course.bookingNum < course.limitBookingNum}}">
+      <text class='f18 subColor mr15'><text class='f12'>￥</text>{{course.price}}</text>
+      <text class='olderPri f14 grey'><text class='f12'>原价：￥</text>{{course.price}}</text>
+      <text class='bookingNum'>{{course.bookingNum}}人报名,仅剩<text class='subColor'>{{course.limitBookingNum - course.bookingNum}}</text>个名额!!!</text>
+    </view>
+    <view class='scpri notAllowBookText' wx:elif="{{course.bookingNum==course.limitBookingNum}}">
+      <text class=''>预约名额已满!看看其它吧...</text>
+    </view>
+
+    <view wx:else class='label gridFour mainColor lineText' bindtap='goSchedule' data-cid='{{course.courseNo}}'>该课程您已预约，点击此处查看课表</view>
+  </view>
+</view>
+
+<!--授课老师  -->
+<view class='curTeaBox white_bg  mb15'>
+  <view class='curTeaTit mainColor'>
+    <text class='iconfont icon-shoukelaoshi mr10'></text>
+    <text class='bold'> 授课老师</text>
+  </view>
+  <view class='curTea flex flexCCen' bindtap="toShowTeacherDetail" data-tid='{{course.teacher.id}}'>
+    <image class='teaHeadPic mr10' mode='aspectFill' src='{{course.teacher.avatarImg}}'></image>
+    <view class=' sub mr10'>
+      <view class='curTeaName lineText f14'>{{course.teacher.name}}</view>
+      <view class='lineText lineText f14'>{{course.teacher.blurb}}</view>
+    </view>
+    <view class='arrowN'></view>
+  </view>
+</view>
+
+<!-- 视频实录 -->
+<view class='curTeaBox white_bg  mb15'>
+  <view class='curTeaTit mainColor'>
+    <text class='iconfont icon-shoukelaoshi mr10'></text>
+    <text class='bold'> 视频实录</text>
+  </view>
+  <view class="vedioItem white_bg mb10">
+      <video class='vedio vedioMargin' id="{{course.courseNo}}" src="{{course.videoUrl}}" show-center-play-btn poster="{{course.imgUrl}}" controls bindplay="toPlay">
+      </video>
+  </view>
+</view>
+
+
+<!--体验课课程简介  -->
+<view class='claDescBox white_bg  mb15' wx:if="{{course.courseClass=='e'}}">
+  <view class='claDesc mainColor'>
+    <text class='iconfont icon-kechengjianjie mr10'></text>
+    <text>课程介绍</text>
+  </view>
+  <view class='descCon mb15'>
+       <text class='blurb'>{{course.blurb}}</text> 
+  </view>
+</view>
+
+<!--精品课程简介  -->
+<view class='claDescBox white_bg  mb15 ' wx:if="{{course.courseClass=='t'}}">
+  <view class='claDesc mainColor '>
+    <text class='iconfont icon-kechengjianjie mr10'></text>
+    <text class='bold'>课程信息</text>
+  </view>
+
+  <view class=''>
+    <view class='flex  flexW f12'>
+      <!-- <view class='label gridFour mainColor lineText'>简单介绍</view> -->
+      <view class='black mb5'>介绍</view>
+      <textarea class='descCon f14'>{{course.blurb}}</textarea>
+    </view>
+    
+    <!-- <view class='kkBox mt5 f14'>   -->
+    <view class='black mb5'>
+      <view class='li'>共 {{course.hours}} 课时</view>
+      <view class='li'>授课时间：每周 {{course.teachTime}}</view>
+    </view>
+    <!--适用对象  -->
+    <view class='mt15'>
+      <view class='black mb5'>适用对象</view>
+      <view class='li '>入门</view>
+      <view class='li '>初学编程</view>
+      <view class='li '>编程爱好者</view>
+    </view>
+    <!--教学目标  -->
+    <view class='mt15'>
+      <view class='black mb5'>教学目标</view>
+      <view class='descCon f14'>培养专业软件开发人才</view>
+    </view>
+  </view>
+</view>
+
+<!-- 底部占位 -->
+ <view class='curTeaBox white_bg  mb15'>
+  <view class='curTeaTit mainColor'>
+    <text class='iconfont icon-shoukelaoshi mr10'></text>
+    <text class='bold'> ****** </text>
+  </view>
+</view> 
+
+<!--底部按钮  -->
+
+<view class='footer tiyan white_bg flex gridXt'>
+  <view class='sub flex tc'>
+    <!-- <button class='subBtn sub ' catchtap='toShare'> -->
+    <button class='subBtn sub' open-type="share">
+      <view class='iconfont icon-fenxiang'></view>
+      <view class='f12 sc '>分享</view>
+    </button>
+    <button class='subBtn sub' bindtap="toCall">
+      <view class='iconfont icon-dianhuazixun'></view>
+      <view class='f12 sc'>电话咨询</view>
+    </button>
+  </view>
+  <button wx:if="{{course.isBooking==false && course.bookingNum < course.limitBookingNum}}" class='partBtn mainColor_bg' bindtap='showBookingModal' data-cid='{{course.courseNo}}'>预约选课</button>
+  <button wx:elif="{{course.isBooking}}" class='partBtn cancelBookBtu' bindtap='showcancelBookModal' data-cid='{{course.courseNo}}'>取消预约</button>
+</view>
